@@ -1,0 +1,16 @@
+version: '3'
+services:
+    mysql57d:
+        image: mysql:5.7.34
+        container_name: mysql57d
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+
+    make-normal-index:
+        image: mysql:5.7.34
+        depends_on:
+            - mysql57d
+        volumes:
+            - ./make-normal-index.sh:/make-normal-index.sh
+        command:
+            - /make-normal-index.sh
